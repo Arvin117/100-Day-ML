@@ -32,7 +32,7 @@ def Butterfly():
     print('Result: ', y_pred)
 
 
-def load_train_mnist(path, kind='train'):
+def load_mnist(path, kind):
     """Load MNIST data from `path`"""
     labels_path = os.path.join(path,
                                '%s-labels-idx1-ubyte'
@@ -54,34 +54,12 @@ def load_train_mnist(path, kind='train'):
 
     return images, labels
 
-
-def load_test_mnist(path, kind='t10k'):
-    """Load MNIST data from `path`"""
-    labels_path = os.path.join(path,
-                               '%s-labels-idx1-ubyte'
-                               % kind)
-    images_path = os.path.join(path,
-                               '%s-images-idx3-ubyte'
-                               % kind)
-    with open(labels_path, 'rb') as lbpath:
-        magic, n = struct.unpack('>II',
-                                 lbpath.read(8))
-        labels = np.fromfile(lbpath,
-                             dtype=np.uint8)
-
-    with open(images_path, 'rb') as imgpath:
-        magic, num, rows, cols = struct.unpack('>IIII',
-                                               imgpath.read(16))
-        images = np.fromfile(imgpath,
-                             dtype=np.uint8).reshape(len(labels), 784)
-
-    return images, labels
 
 
 def MyMnist():
-    X_train, Y_train = load_train_mnist('./datasets/MNIST/raw')
-    X_test, Y_test = load_test_mnist('./datasets/MNIST/raw')
-    X_train, Y_train, X_test, Y_test = X_train[:10000, :], Y_train[:10000], X_test[:30,:], Y_test[:30]
+    X_train, Y_train = load_mnist('./datasets/MNIST/raw', kind='train')
+    X_test, Y_test = load_mnist('./datasets/MNIST/raw', kind='t10k')
+    X_train, Y_train, X_test, Y_test = X_train[:10000, :], Y_train[:10000], X_test[:30, :], Y_test[:30]
     # print(X_train.shape)
     print('MNIST数据组结果:')
     knn = KNeighborsClassifier(n_neighbors=3)
