@@ -8,7 +8,7 @@ from pandas import DataFrame, Series
 from sklearn.neighbors import KNeighborsClassifier  # K-NN
 
 
-def Butterfly():
+def Iris():
     # 创建数据
     import sklearn.datasets as datasets
 
@@ -24,7 +24,7 @@ def Butterfly():
     # 实例化
     Knn = KNeighborsClassifier(n_neighbors=10)
     Knn.fit(X_train, Y_train)
-    print('蓝蝴蝶数据组结果:')
+    print('数据组结果:')
     print('Score: ', Knn.score(X_train, Y_train))
 
     y_pred = Knn.predict(X_test)
@@ -89,5 +89,5 @@ def MyMnist():
 
 
 if __name__ == '__main__':
-    Butterfly()
+    Iris()
     MyMnist()
