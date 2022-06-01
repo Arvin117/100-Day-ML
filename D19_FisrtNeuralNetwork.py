@@ -174,12 +174,15 @@ def on_other_dataset():
         Y = Y % 2
 
     # 可视化
-    plt.scatter(X[0, :], X[1, :], c=Y, s=40, cmap=plt.cm.Spectral)
-    plt.show()
+    # plt.scatter(X[0, :], X[1, :], c=Y, s=40, cmap=plt.cm.Spectral)
+    # plt.show()
+
+    return X, Y, Y.shape[1]
 
 
 if __name__ == '__main__':
     X, Y, m = data()
+    # X, Y, m = on_other_dataset()  # 在其他数据集上进行测试
     # LR()
     """逐步分析"""
     n_x, n_h, n_y = layer_size(X, Y)  # 设置每一层的节点数
@@ -201,5 +204,5 @@ if __name__ == '__main__':
     print('Accuracy: %d' % float(
         (np.dot(Y, predictions.T) + np.dot(1 - Y, 1 - predictions.T)) / float(Y.size) * 100) + '%')
 
-    # show_hidden_layer()   # 更改隐藏层节点数，测试准确率
-    on_other_dataset()  # 在其他数据集上进行测试
+    # show_hidden_layer()   # 测试隐藏层不同节点数对于预测精度的不同
+
