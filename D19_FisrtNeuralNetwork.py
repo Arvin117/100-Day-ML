@@ -205,4 +205,3 @@ if __name__ == '__main__':
         (np.dot(Y, predictions.T) + np.dot(1 - Y, 1 - predictions.T)) / float(Y.size) * 100) + '%')
 
     # show_hidden_layer()   # 测试隐藏层不同节点数对于预测精度的不同
-
